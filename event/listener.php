@@ -80,7 +80,7 @@ class listener implements EventSubscriberInterface
 		{
 			include_once $this->root_path . 'includes/functions_user.' . $this->php_ext;
 		}
-		
+
 		if (group_memberships(json_decode($this->config['debug_group']), $this->user->data['user_id']) || $this->config['debug_all'])
 		{
 			if (!$this->config['debug_load'])
