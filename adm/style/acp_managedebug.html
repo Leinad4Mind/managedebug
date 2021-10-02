@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if PHP_VALID and PHPBB_VALID %}
+		<form id="schedulelock" method="post" action="{{ U_ACTION }}">
+			<fieldset>
+				<legend>{{ lang('DEBUG_GROUP_OPTIONS') }}</legend>
+
+				<dl>
+					<dt><label for="debug_all">{{ lang('DEBUG_ALL_GROUPS') }}{{ lang('COLON') }}</label><br><span>{{ lang('DEBUG_ALL_GROUPS_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_all1" name="debug_all" value="1"{% if DEBUG_ALL %} checked="checked"{% endif %} />
+						<label class="set" for="debug_all1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_all0" name="debug_all" value="0"{% if not DEBUG_ALL %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_all0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="debug_group">{{ lang('DEBUG_GROUPS') }}{{ lang('COLON') }}</label><br><span>{{ lang('DEBUG_GROUPS_EXPLAIN') }}</span></dt>
+					<dd>
+						<select id="debug_group" name="debug_group[]" multiple size="8">
+							{% for group in groups %}
+								<option value="{{ group.ID }}"{% if group.S_SELECTED %} selected{% endif %}>{{ group.NAME }}</option>
+							{% endfor %}
+						</select>
+					</dd>
+				</dl>
+
+			</fieldset>
+
+			<fieldset>
+				<legend>{{ lang('DEBUG_OPTIONS') }}</legend>
+
+				<dl>
+					<dt><label for="debug_load">{{ lang('SHOW_DEBUG_LOAD') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_DEBUG_LOAD_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_load1" name="debug_load" value="1"{% if DEBUG_LOAD %} checked="checked"{% endif %} />
+						<label class="set" for="debug_load1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_load0" name="debug_load" value="0"{% if not DEBUG_LOAD %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_load0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="debug_memory">{{ lang('SHOW_DEBUG_MEMORY') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_DEBUG_MEMORY_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_memory1" name="debug_memory" value="1"{% if DEBUG_MEMORY %} checked="checked"{% endif %} />
+						<label class="set" for="debug_memory1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_memory0" name="debug_memory" value="0"{% if not DEBUG_MEMORY %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_memory0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="debug_queries">{{ lang('SHOW_DEBUG_QUERIES') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_DEBUG_QUERIES_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_queries1" name="debug_queries" value="1"{% if DEBUG_QUERIES %} checked="checked"{% endif %} />
+						<label class="set" for="debug_queries1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_queries0" name="debug_queries" value="0"{% if not DEBUG_QUERIES %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_queries0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="debug_gzip">{{ lang('SHOW_DEBUG_GZIP') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_DEBUG_GZIP_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_gzip1" name="debug_gzip" value="1"{% if DEBUG_GZIP %} checked="checked"{% endif %} />
+						<label class="set" for="debug_gzip1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_gzip0" name="debug_gzip" value="0"{% if not DEBUG_GZIP %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_gzip0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="debug_sql">{{ lang('SHOW_DEBUG_SQL') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_DEBUG_SQL_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="debug_sql1" name="debug_sql" value="1"{% if DEBUG_SQL %} checked="checked"{% endif %} />
+						<label class="set" for="debug_sql1">{{ lang('YES') }}</label>
+						<input type="radio" id="debug_sql0" name="debug_sql" value="0"{% if not DEBUG_SQL %} checked="checked"{% endif %} />
+						<label class="unset" for="debug_sql0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+			</fieldset>
+
+			<fieldset>
+				<legend>{{ lang('SAVE_CHANGES') }}</legend>
+				<p class="submit-buttons">
+					<input class="adm-button" type="submit" id="submit" name="submit" value="{{ lang('SAVE') }}" />&nbsp;
+					<input class="adm-button" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+				</p>
+				{{ S_FORM_TOKEN }}
+			</fieldset>
+		</form>
+	{% endif %}
+{% endblock %}

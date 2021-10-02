@@ -1,0 +1,23 @@
+imports:
+    - { resource: debug.yml }
+
+services:
+    _defaults:
+        autowire: true
+        bind:
+            $root_path: '%core.root_path%'
+            $php_ext: '%core.php_ext%'
+            $tables: '%tables%'
+            $ext_images_path: '%core.root_path%ext/david63/managedebug/adm/style/images'
+        public: true
+
+    david63.managedebug.listener:
+        class: david63\managedebug\event\listener
+        tags:
+            - { name: event.listener }
+
+    david63.managedebug.admin.controller:
+        class: david63\managedebug\controller\admin_controller
+
+    david63.managedebug.core.functions:
+        class: david63\managedebug\core\functions
